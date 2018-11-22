@@ -1,16 +1,16 @@
 package domain;
 
 public class Propeller {
-	
+
 	private int maxPower = 0;
 	private int currentPower = 0;
 	private static int powerStep = 10;
-	
+
 	public Propeller() {
 
 	}
 
-	public Propeller(int pow) throws Exception{
+	public Propeller(int pow) throws Exception {
 		setMaximumPower(pow);
 	}
 
@@ -25,7 +25,7 @@ public class Propeller {
 	public int getMaximumPower() {
 		return this.maxPower;
 	}
-	
+
 	public int getCurrentPower() {
 		return this.currentPower;
 	}
@@ -34,22 +34,19 @@ public class Propeller {
 		if (powerIncrease) {
 			if (currentPower + powerStep <= this.maxPower) {
 				currentPower += powerStep;
-			}
-			else {
+			} else {
 				this.currentPower = this.maxPower;
 				throw new Exception("Error: Propeller maximum power exceeded. Power set to its maximum.");
 			}
-		}
-		else {
+		} else {
 			if (currentPower - powerStep >= 0) {
 				currentPower -= powerStep;
-			}
-			else {
+			} else {
 				this.currentPower = 0;
 				throw new Exception("Error: Propeller power can't be set under 0. Power set to 0.");
 			}
 		}
 
 	}
-		
+
 }
