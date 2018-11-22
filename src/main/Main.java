@@ -2,6 +2,7 @@ package main;
 
 import java.util.*;
 import domain.Rocket;
+import domain.Propeller;
 
 public class Main {
 	private static int currentRocket = 1;
@@ -78,7 +79,7 @@ public class Main {
 		//Aquest mètode té més de 7 línies perquè només serveix per printar
 		boolean firstElement = true;
 		int i = 0;
-		System.out.print(printableRocket.getRocketId() + ":");
+		System.out.print(printableRocket.getRocketId() + " has " + printableRocket.getNumberOfProps() + " propellers, and their maximum powers are:");
 		String joiner = "";
 		while (i < printableRocket.getNumberOfProps()) {
 			if (firstElement) {
@@ -91,9 +92,17 @@ public class Main {
 			System.out.print(joiner + printableRocket.getPropellerList().get(i).getMaximumPower());
 			i++;
 		}
-		System.out.println();
+		System.out.println("\n");
 	}
 
+	private static void printRocketSettings(Rocket printableRocket) {
+		System.out.print(printableRocket.getRocketId() + " current velocity: " + printableRocket.getCurrentVelocity() + "\n" + "{");
+		for (Propeller p: printableRocket.getPropellerList()) {
+			System.out.print(p.getCurrentPower() + " ");
+		}
+		System.out.println("}");
+	}
+	
 	public static void main(String[] args) {
 		sc = new Scanner(System.in); // la inicialitzem un sol cop
 
@@ -102,9 +111,64 @@ public class Main {
 		Rocket rocket2 = new Rocket();
 		readTheRocket(rocket2);
 		sc.close(); // tanquem al final, no a cada funció!
+		
+		// Exercici 3
 		printTheRocket(rocket1);
+		printRocketSettings(rocket1);
 		printTheRocket(rocket2);
+		printRocketSettings(rocket2);
+		System.out.println("\n");
+		
+		// Exercici 4
+		try {
+			for (int i = 0; i < 3; i++) {
+				rocket1.setAcceleration(rocket1.getPropellerList());
+				rocket2.setAcceleration(rocket2.getPropellerList());
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("\n");
+		
+		//Exercici 5
+		printRocketSettings(rocket1);
+		printRocketSettings(rocket2);
+		System.out.println("\n");
+		
+		//Exercici6
+		try {
+			for (int i = 0; i < 5; i++) {
+				rocket1.setDeceleration(rocket1.getPropellerList());
+			}
+			for (int i = 0; i < 7; i++) {
+				rocket2.setAcceleration(rocket2.getPropellerList());
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("\n");
+		
+		//Exercici 7
+		printRocketSettings(rocket1);
+		printRocketSettings(rocket2);
+		System.out.println("\n");
+		
+		//Exercici 8
+				try {
+					for (int i = 0; i < 15; i++) {
+						rocket1.setAcceleration(rocket1.getPropellerList());
+						rocket2.setAcceleration(rocket2.getPropellerList());
+					}
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+		System.out.println("\n");
 				
-	}
+		//Exercici 9
+		printRocketSettings(rocket1);
+		printRocketSettings(rocket2);
+		System.out.println("\n");
+		
+	} // MAIN END
 
 }
